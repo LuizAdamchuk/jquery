@@ -1,0 +1,25 @@
+.frase {
+    font-size: 25px;
+    text-align: left;
+}
+.campo-digitacao {
+    font-size: 20px;
+    height: 120px;
+    border:3px solid black;
+}
+
+.campo-desativado {
+    background: lightgray;
+}
+.informacoes {
+    padding: 50px 20px;
+}
+.icones {
+    vertical-align: middle;
+}
+.borda-verde {
+    border: 3px solid green;
+}
+.borda-vermelha {
+    border: 3px solid red;
+}
