@@ -1,3 +1,10 @@
+$("#botao-placar").on("click", mostraPlacar)
+
+function mostraPlacar() {
+    $(".placar").stop().slideToggle(600)
+};
+
+
 function inserePlacar() {
     var corpoTabela = $(".placar").find("tbody");
     var usuario = "Luiz";
@@ -9,6 +16,15 @@ function inserePlacar() {
     //O comando que adiciona um novo elemento como primeiro filho é o prepend(). Ele recebe um 
     //elemento HTML ou uma string e adiciona-o como um filho, antes dos filhos que ele já possuía.            
     corpoTabela.prepend(linha);
+    $(".placar").slideDown(500);
+    scrollPlacar();
+};
+
+function scrollPlacar() {
+    var posicaoPlacar = $(".placar").offSet().top;
+    $("body").animate({
+        scrollTop: posicaoPlacar+"px"
+    }, 1000);
 };
 
 function novaLinha(usuario, palavras) {
@@ -51,7 +67,15 @@ function removeLinha() {
         //A função .parent() tem como objetivo navegar pela árvore de elementos do HTML. Ela por
         //padrão retorna o pai do elemento em que foi chamada
         // Podemos encadear várias chamadas a .parent() para buscar elementos mais acima
-        $(this).parent().parent().remove();
+        // no caso do fadeOut funcinona para que a linha seja deletada aos poucos, sumindo,
+        // porem ela apenas fica como display: none, para que ocorra a remocao precisa o remove()
+        // porem se colocar logo em seguida ele vai cortar a animacao, entao poderia usar 
+        // o setTimeOut, porem se colocar dessa maneira colocando a funcao como parametro
+        // do fadeOut ela vai esperar a execaucao da animacao e só depois remover.
+        $(this).parent().parent().fadeOut(function() {
+            $(this).remove();
+        });
+        
         //A função .remove() , serve pare remover um elemento do HTML, como o próprio nome indica. 
         //Tome cuidado ao usá-la , pois o elemento é realmente removido e não apenas escondido, que
         //é o caso quando usamos a função .hide().
