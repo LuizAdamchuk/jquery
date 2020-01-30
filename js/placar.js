@@ -1,7 +1,19 @@
 $("#botao-placar").on("click", mostraPlacar)
 
 function mostraPlacar() {
+    // A função .stop() serve para interromper uma animação antes de começar a próxima. 
+    // evintando assim multiplos cliques fiquem sendo executados, o que impede que várias 
+    //animações fiquem encadeadas uma nas outras e crie um menu que fica subindo e descendo
+    // constantemente
+    // O toggle faz com que ativa/desativa algo, no caso o display:none, fazendo com que
+    // o placar aprece e desapareca, se escolheu o slideToggle, para que ele apareca com 
+    // uma transicao mais suave, escolhemos 600millisg
+    //Assim como a função toggleClass, que vimos no último módulo, que adiciona ou remove uma 
+    //classe. A função toggle adiciona ou esconde um elemento
     $(".placar").stop().slideToggle(600)
+    //Conseguimos configurar a duração das funções de animação do jQuery passando para elas 
+    //velocidade, em formato de número, para a função. Então se desejamos que um fade dure 2 
+    //segundos, devemos informar 2000 milissegundos
 };
 
 
@@ -21,7 +33,11 @@ function inserePlacar() {
 };
 
 function scrollPlacar() {
+    // o termo offSet serve para pegar a posicao da variavel q se esta procurando, 
+    // recebe apenas o número
     var posicaoPlacar = $(".placar").offSet().top;
+    // o animate consegue fazer varias coisas dentre elas scrollar pra posicao q se passa
+    // no caso como recebe apenas o numero precisa passar o px, e depois o tempo.
     $("body").animate({
         scrollTop: posicaoPlacar+"px"
     }, 1000);

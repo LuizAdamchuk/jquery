@@ -17,6 +17,12 @@ $(function() {
     $("#botao-reiniciar").on("click", reiniciaJogo);
 });
 
+function atualizaTempoInicial(tempo) {
+    tempoInicial = tempo;
+    $("#tempo-digitacao").text(tempo);
+};
+
+
 function atualizaTamnhoFrase() {
     // nesse caso o $ significa jQuery
     var frase = $(".frase").text();
@@ -61,13 +67,15 @@ function inicializaContadores() {
 
 function inicializaCronometro() {
     
-    var tempoRestante = $("#tempo-digitacao").text();
-    // Utilizamos o evento de focus para detectar se o usuário já entrou em um campo de texto. 
-    // O ato de entrar pode ser feito de vários modos,
-    // como clicar com o mouse no campo, ou navegar através da tecla tab.
-    // por exemplo sugerir um autocomplete de um campo assim que ele ganhar foco.
+
     
     campo.one("focus", function(){
+        var tempoRestante = $("#tempo-digitacao").text();
+        // Utilizamos o evento de focus para detectar se o usuário já entrou em um campo de texto. 
+        // O ato de entrar pode ser feito de vários modos,
+        // como clicar com o mouse no campo, ou navegar através da tecla tab.
+        // por exemplo sugerir um autocomplete de um campo assim que ele ganhar foco.
+
         //A função .one() funciona de modo semelhante a função .on(), 
         //ambas podem ser utilizadas em qualquer elemento,
         //recebem qualquer evento como primeiro parâmetro e 
@@ -106,8 +114,9 @@ function finalizaJogo() {
 };
 
 function inicializaMarcadores() {
-    var frase = $(".frase").text();
+    
     campo.on("input", function(){
+        var frase = $(".frase").text();
         //Usamos a função substr para pegar o uma parte da frase, aqui do início (índice 0) até o 
         //tamanho da string digitado. 
         // Baseado nessa substring comparavel testamos se o conteúdo digitado bate com a frase
